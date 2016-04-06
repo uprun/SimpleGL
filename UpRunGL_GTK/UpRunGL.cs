@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -166,6 +166,7 @@ namespace UpRunGL_GTK
 			public Matrix3d Multiply(Matrix3d B)
 			{
 				Matrix3d buf = new Matrix3d();
+				buf.ToZero ();
 				for (int i = 0; i < 4; i++)
 					for (int k = 0; k < 4; k++)
 						for (int j = 0; j < 4; j++)
@@ -175,6 +176,7 @@ namespace UpRunGL_GTK
 			public Point3d Multiply(Point3d b)
 			{
 				Point3d buf = new Point3d();
+				buf.ToZero ();
 				for (int i = 0; i < 4; i++)
 					for (int j = 0; j < 4; j++)
 						buf.mas[i] += mas[i][j] * b.mas[j];
@@ -237,6 +239,7 @@ namespace UpRunGL_GTK
 				ToZero();
 				Ones();
 				mas[2][2] = 0;
+				mas [3] [3] = 0;
 				mas[3][2] = 1 / dist;
 			}
 			public void InitAsProjectionParallelMatrix()
