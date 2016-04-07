@@ -238,7 +238,7 @@ namespace UpRunGL_GTK
 			{
 				ToZero();
 				Ones();
-				mas[2][2] = 0;
+				mas[2][2] = 1;
 				mas [3] [3] = 0;
 				mas[3][2] = 1 / dist;
 			}
@@ -374,14 +374,15 @@ namespace UpRunGL_GTK
 					double z0,z1;
 					buf=projection.Multiply(mas[i]);
 					buf2=projection.Multiply(mas[(i+1)%3]);
+					z0 = buf.Z;
+					z1 = buf2.Z;
 					buf.NormalizeByOne();
 					buf2.NormalizeByOne();
 					x0=(int)Math.Floor(buf.X);
 					y0=(int)Math.Floor(buf.Y);
-					z0=mas[i].Z;
+
 					x1=(int)Math.Floor(buf2.X);
 					y1=(int)Math.Floor(buf2.Y);
-					z1=mas[(i+1)%3].Z;
 					zbuf.TrySetPixel(x0, y0, z0, clr);
 					DrawOnBMPRastr.DrawBrezenhemLine(x0, y0, z0, x1, y1, z1, x_left, x_right, z_left, z_right);
 					zbuf.TrySetPixel(x1, y1, z1, clr);

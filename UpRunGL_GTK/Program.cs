@@ -31,15 +31,15 @@ namespace UpRunGL_GTK
 				return true;
 			});
 			UpRunGL.Triangle3d triangleFrontGreen = new UpRunGL.Triangle3d (
-				new UpRunGL.Point3d(-200 , -200, 50),
-				new UpRunGL.Point3d(200, -200, 50),
-				new UpRunGL.Point3d(200, 200, 50),
+				new UpRunGL.Point3d(-200 , -200, 0),
+				new UpRunGL.Point3d(200, -200, 0),
+				new UpRunGL.Point3d(200, 200, 0),
 				new Color(0, 255, 0)
 			);
 			UpRunGL.Triangle3d triangleFrontRed = new UpRunGL.Triangle3d (
-				new UpRunGL.Point3d(-200, -200, 50),
-				new UpRunGL.Point3d(-200, 200, 50),
-				new UpRunGL.Point3d(200, 200, 50),
+				new UpRunGL.Point3d(-200, -200, 0),
+				new UpRunGL.Point3d(-200, 200, 0),
+				new UpRunGL.Point3d(200, 200, 0),
 				new Color(255, 0, 0)
 			);
 			projection = new UpRunGL.Matrix3d ();
@@ -47,15 +47,18 @@ namespace UpRunGL_GTK
 
 
 			UpRunGL.Matrix3d rotationMatrix = new UpRunGL.Matrix3d ();
-			rotationMatrix.InitAsRotationMatrixOY (0);
+			rotationMatrix.InitAsRotationMatrixOY (0.1);
 
 			UpRunGL.Matrix3d shiftMatrix = new UpRunGL.Matrix3d ();
-			shiftMatrix.InitAsShiftMatrix (0, 0, 0);
+			shiftMatrix.InitAsShiftMatrix (0, 0, 50);
 
 			UpRunGL.Matrix3d localShift = new UpRunGL.Matrix3d ();
 			localShift.InitAsShiftMatrix (200, 200, 0);
 
-			projection = localShift.Multiply (projection.Multiply ( shiftMatrix.Multiply(rotationMatrix)));
+			var mulShiftRot = shiftMatrix.Multiply (rotationMatrix);
+			var mulProjShiftRot = projection.Multiply (mulShiftRot);
+
+			projection = localShift.Multiply (mulProjShiftRot);
 			//projection = localShift.Multiply(projection);
 
 			triangleFrontGreen.DrawToRastr (zbuffer, projection);
