@@ -246,7 +246,6 @@ namespace UpRunGL_GTK
 			{
 				ToZero();
 				Ones();
-				mas[2][2] = 0;
 			}
 		}
 		public class ZBuffer
@@ -301,6 +300,7 @@ namespace UpRunGL_GTK
 		}
 		public class Box3d
 		{
+			
 
 		}
 		public class Triangle3d
