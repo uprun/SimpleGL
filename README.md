@@ -3,4 +3,4 @@ This is implementation of a simple graphic library, written in C#, initially lib
 This code is an example of how triangle can be rendered in modern graphic libraries.
 
 Developers:
-Oleksandr Kryvonos (uprun)
+Oleksandr (uprun)
